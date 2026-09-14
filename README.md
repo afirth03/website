@@ -1,2 +1,2 @@
-# Alexfirth.github.io
+# Welcome to my page
 Showcasing my projects and current occupation
