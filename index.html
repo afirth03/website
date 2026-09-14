@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alexander Firth — IT Support &amp; Infrastructure</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#101927;
+    --paper:#F5F6F4;
+    --paper-raised:#EFF1EC;
+    --slate:#52606D;
+    --slate-light:#7C8894;
+    --signal:#2F6F68;
+    --signal-light:#DCE9E7;
+    --line:#D6DAD5;
+    --max:780px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'IBM Plex Sans', sans-serif;
+    font-size:17px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{
+    font-family:'Source Serif 4', serif;
+    font-weight:600;
+    margin:0;
+    color:var(--ink);
+  }
+  a{color:var(--signal);}
+  :focus-visible{outline:2px solid var(--signal); outline-offset:3px;}
+
+  .wrap{max-width:var(--max); margin:0 auto; padding:0 28px;}
+
+  /* ---------- Nav ---------- */
+  .nav{
+    position:sticky; top:0; z-index:10;
+    background:rgba(245,246,244,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav .wrap{
+    display:flex; align-items:center; justify-content:space-between;
+    padding-top:16px; padding-bottom:16px;
+  }
+  .nav-name{font-family:'Source Serif 4',serif; font-size:19px; font-weight:600;}
+  .nav-links{display:flex; gap:28px; list-style:none; margin:0; padding:0; font-size:15px;}
+  .nav-links a{color:var(--slate); text-decoration:none;}
+  .nav-links a:hover{color:var(--signal);}
+  .nav-cta{
+    font-size:14px; color:var(--paper); background:var(--ink);
+    padding:9px 16px; border-radius:3px; text-decoration:none;
+    white-space:nowrap;
+  }
+  .nav-cta:hover{background:var(--signal);}
+
+  /* ---------- Hero ---------- */
+  .hero{padding:64px 0 56px;}
+  .hero-grid{
+    display:grid; grid-template-columns:1.1fr 0.9fr; gap:40px; align-items:center;
+  }
+  .eyebrow-line{
+    color:var(--slate-light); font-size:15px; margin-bottom:14px;
+  }
+  .hero h1{font-size:44px; line-height:1.12; letter-spacing:-0.01em;}
+  .hero-role{
+    font-size:19px; color:var(--signal); margin-top:14px; font-weight:500;
+  }
+  .hero p.lede{
+    margin-top:18px; color:var(--slate); font-size:17px; max-width:52ch;
+  }
+  .hero-actions{margin-top:28px; display:flex; gap:14px; flex-wrap:wrap;}
+  .btn-primary{
+    background:var(--ink); color:var(--paper); text-decoration:none;
+    padding:12px 22px; border-radius:3px; font-size:15px; font-weight:500;
+    display:inline-block;
+  }
+  .btn-primary:hover{background:var(--signal);}
+  .btn-secondary{
+    border:1px solid var(--line); color:var(--ink); text-decoration:none;
+    padding:12px 22px; border-radius:3px; font-size:15px;
+    display:inline-block;
+  }
+  .btn-secondary:hover{border-color:var(--signal); color:var(--signal);}
+  .hero-contact{
+    margin-top:26px; display:flex; gap:18px; flex-wrap:wrap;
+    font-size:14px; color:var(--slate-light);
+  }
+
+  .hero-art{width:100%; height:auto;}
+  .net-line{
+    stroke:var(--signal); stroke-width:1.4; fill:none;
+    stroke-dasharray:500; stroke-dashoffset:500;
+    animation:draw 1.8s ease forwards;
+  }
+  .net-node{
+    fill:var(--paper); stroke:var(--ink); stroke-width:1.4;
+    opacity:0; animation:pop 0.5s ease forwards;
+  }
+  .net-node.signal{stroke:var(--signal); fill:var(--signal-light);}
+  @keyframes draw{to{stroke-dashoffset:0;}}
+  @keyframes pop{to{opacity:1;}}
+  @media (prefers-reduced-motion: reduce){
+    .net-line{stroke-dashoffset:0; animation:none;}
+    .net-node{opacity:1; animation:none;}
+  }
+
+  /* ---------- Section shell ---------- */
+  section{padding:56px 0;}
+  .section-head{margin-bottom:34px;}
+  .section-head h2{font-size:28px;}
+  .section-head .sub{color:var(--slate); font-size:15px; margin-top:6px;}
+  .rule{border:none; border-top:1px solid var(--line); margin:0;}
+
+  /* ---------- Profile ---------- */
+  .profile p{color:var(--slate); font-size:17px; max-width:64ch;}
+
+  /* ---------- Timeline ---------- */
+  .timeline{position:relative;}
+  .role{
+    display:grid; grid-template-columns:150px 1fr; gap:24px;
+    padding:26px 0; border-bottom:1px solid var(--line);
+    position:relative;
+  }
+  .role:first-child{padding-top:0;}
+  .role:last-child{border-bottom:none;}
+  .role-dates{
+    color:var(--slate-light); font-size:14px; padding-top:3px;
+  }
+  .role-dates .tag{
+    display:inline-block; margin-top:8px; font-size:12px; color:var(--signal);
+    background:var(--signal-light); padding:3px 9px; border-radius:3px;
+  }
+  .role-title{font-size:19px; font-weight:600; font-family:'Source Serif 4',serif;}
+  .role-org{color:var(--signal); font-size:15px; margin-top:2px; font-weight:500;}
+  .role ul{margin:14px 0 0; padding-left:18px; color:var(--slate);}
+  .role li{margin-bottom:8px; font-size:15.5px;}
+  @media (max-width: 640px){
+    .role{grid-template-columns:1fr;}
+    .role-dates{padding-top:0;}
+  }
+
+  /* ---------- Skills ---------- */
+  .skills-grid{
+    display:grid; grid-template-columns:1fr 1fr; gap:0 48px;
+  }
+  .skill-group{
+    padding:20px 0; border-bottom:1px solid var(--line);
+  }
+  .skill-group h3{font-size:16px; font-weight:600; margin-bottom:10px;}
+  .skill-list{color:var(--slate); font-size:15px; line-height:1.7;}
+  @media (max-width: 640px){
+    .skills-grid{grid-template-columns:1fr;}
+  }
+
+  /* ---------- Education ---------- */
+  .edu-block{padding:22px 0; border-bottom:1px solid var(--line);}
+  .edu-block:last-child{border-bottom:none;}
+  .edu-top{display:flex; justify-content:space-between; gap:20px; flex-wrap:wrap;}
+  .edu-degree{font-size:19px; font-weight:600; font-family:'Source Serif 4',serif;}
+  .edu-grade{color:var(--signal); font-size:15px; font-weight:500; white-space:nowrap;}
+  .edu-org{color:var(--slate); font-size:15px; margin-top:2px;}
+  .edu-modules{
+    margin-top:14px; font-size:14.5px; color:var(--slate); line-height:1.8;
+  }
+  .edu-modules b{color:var(--ink); font-weight:500;}
+
+  /* ---------- Projects ---------- */
+  .project{padding:24px 0; border-bottom:1px solid var(--line);}
+  .project:last-child{border-bottom:none;}
+  .project h3{font-size:18px; font-weight:600;}
+  .project p{color:var(--slate); font-size:15.5px; margin-top:8px; max-width:64ch;}
+
+  /* ---------- Footer ---------- */
+  footer{padding:56px 0 72px; border-top:1px solid var(--line);}
+  .footer-grid{display:flex; justify-content:space-between; gap:24px; flex-wrap:wrap;}
+  footer h2{font-size:26px; max-width:20ch;}
+  footer p{color:var(--slate); margin-top:10px; max-width:40ch;}
+  .footer-contact{font-size:15px; color:var(--slate);}
+  .footer-contact a{display:block; color:var(--ink); text-decoration:none; margin-top:8px;}
+  .footer-contact a:hover{color:var(--signal);}
+  .footer-note{
+    margin-top:48px; color:var(--slate-light); font-size:13px;
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap">
+    <div class="nav-name">Alexander Firth</div>
+    <ul class="nav-links">
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#projects">Projects</a></li>
+    </ul>
+    <a class="nav-cta" href="mailto:alexanderfirth@sky.com">Get in touch</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow-line">Edinburgh, UK</div>
+      <h1>IT support today. Infrastructure and networking next.</h1>
+      <div class="hero-role">IT Support Officer at Lothian Buses</div>
+      <p class="lede">Computer Science graduate keeping a 500-person, 900-device estate running — Microsoft 365, Active Directory, networking and hardware, end to end. Studied network security and ethical hacking at York; now building toward systems administration.</p>
+      <div class="hero-actions">
+        <a class="btn-primary" href="mailto:alexanderfirth@sky.com">Email me</a>
+        <a class="btn-secondary" href="#experience">See the work</a>
+      </div>
+      <div class="hero-contact">
+        <span>alexanderfirth@sky.com</span>
+      </div>
+    </div>
+    <div>
+      <svg class="hero-art" viewBox="0 0 320 260" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path class="net-line" d="M60,190 L150,90" style="animation-delay:0.1s"/>
+        <path class="net-line" d="M150,90 L250,50" style="animation-delay:0.3s"/>
+        <path class="net-line" d="M150,90 L230,150" style="animation-delay:0.4s"/>
+        <path class="net-line" d="M60,190 L140,220" style="animation-delay:0.2s"/>
+        <path class="net-line" d="M230,150 L280,190" style="animation-delay:0.5s"/>
+        <path class="net-line" d="M150,90 L90,60" style="animation-delay:0.15s"/>
+        <circle class="net-node signal" cx="150" cy="90" r="9" style="animation-delay:1.9s"/>
+        <circle class="net-node" cx="60" cy="190" r="6" style="animation-delay:2.0s"/>
+        <circle class="net-node" cx="250" cy="50" r="6" style="animation-delay:2.1s"/>
+        <circle class="net-node" cx="230" cy="150" r="6" style="animation-delay:2.15s"/>
+        <circle class="net-node" cx="140" cy="220" r="6" style="animation-delay:2.2s"/>
+        <circle class="net-node" cx="280" cy="190" r="6" style="animation-delay:2.25s"/>
+        <circle class="net-node" cx="90" cy="60" r="6" style="animation-delay:2.3s"/>
+      </svg>
+    </div>
+  </div>
+</header>
+
+<section id="profile">
+  <div class="wrap profile">
+    <hr class="rule">
+    <p style="margin-top:32px;">Since May 2026 I've provided 1st-line IT support across seven Lothian Buses sites — diagnosing Windows 11 hardware and software faults, administering Microsoft 365 and Active Directory, and troubleshooting the TCP/IP, DNS, DHCP and Wi-Fi issues that keep 900+ devices connected. Before that, three years in customer-facing and site roles taught me how to manage people, stock and pressure — skills that now show up in how I triage tickets and communicate with users who just want their laptop working again.</p>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Experience</h2>
+      <div class="sub">Four roles, one thread: keeping complex operations running for the people who depend on them.</div>
+    </div>
+    <div class="timeline">
+
+      <div class="role">
+        <div class="role-dates">May 2026 – Present<div class="tag">Current</div></div>
+        <div>
+          <div class="role-title">IT Support Officer</div>
+          <div class="role-org">Lothian Buses Ltd, Edinburgh</div>
+          <ul>
+            <li>Provide 1st-line support to 500+ employees across 7 sites and 900+ devices, by phone, email, remote and on-site.</li>
+            <li>Diagnose and resolve Windows 11 hardware and software issues across laptops, desktops, printers and mobile devices in Windows, Android and iOS environments.</li>
+            <li>Administer Microsoft 365, Active Directory and Microsoft Entra ID — user accounts, permissions, access and authentication.</li>
+            <li>Troubleshoot TCP/IP, DNS, DHCP, Wi-Fi and connectivity faults, and investigate infrastructure issues to restore service.</li>
+            <li>Manage and prioritise incidents through the ticketing system, and write knowledge-base articles that improve resolution consistency.</li>
+            <li>Support IT infrastructure deployments and data cabling across multiple sites.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="role">
+        <div class="role-dates">Jun 2023 – May 2026</div>
+        <div>
+          <div class="role-title">Sales Assistant</div>
+          <div class="role-org">Barbour, Edinburgh</div>
+          <ul>
+            <li>Served 500+ customers daily in Barbour's top-performing store, earning frequent positive feedback.</li>
+            <li>Processed £5,000+ daily, contributing to £3,000,000 in annual takings, with strict adherence to company policy.</li>
+            <li>Supported a 10-person team across sales, stock and visual merchandising, and personally verified a 4,000-item stock change during seasonal transfer.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="role">
+        <div class="role-dates">Sept 2021 – Jul 2023</div>
+        <div>
+          <div class="role-title">Sports and Site Attendant</div>
+          <div class="role-org">Brigshaw High School, Leeds</div>
+          <ul>
+            <li>Opened and closed a 25-acre operational site, responsible for security and readiness for daily activity.</li>
+            <li>Coordinated sports groups and on-site projects, earning strong stakeholder feedback.</li>
+            <li>Carried out site maintenance and worked with colleagues to streamline day-to-day operations.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="role">
+        <div class="role-dates">Jun 2020 – Sept 2021</div>
+        <div>
+          <div class="role-title">Factory Worker</div>
+          <div class="role-org">Poplar Products, Leeds</div>
+          <ul>
+            <li>Finished products to a high standard for clients including Morrisons and Frankie &amp; Benny's.</li>
+            <li>Built time-management and multitasking skills across assembly and upholstery lines.</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Skills</h2>
+      <div class="sub">What I use day to day, and what I studied to get here.</div>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-group">
+        <h3>IT &amp; infrastructure</h3>
+        <div class="skill-list">Windows · Microsoft 365 · Active Directory · Entra ID · Azure · VMware · Networking</div>
+      </div>
+      <div class="skill-group">
+        <h3>Cybersecurity</h3>
+        <div class="skill-list">Network security · Ethical hacking · Digital forensics · Wireshark</div>
+      </div>
+      <div class="skill-group">
+        <h3>Programming &amp; data</h3>
+        <div class="skill-list">Python · Java · SQL · Machine learning · Data structures &amp; algorithms</div>
+      </div>
+      <div class="skill-group">
+        <h3>Applications</h3>
+        <div class="skill-list">Microsoft Office · Excel · PowerPoint</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="education">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Education</h2>
+    </div>
+
+    <div class="edu-block">
+      <div class="edu-top">
+        <div class="edu-degree">BEng Computer Science</div>
+        <div class="edu-grade">2:1</div>
+      </div>
+      <div class="edu-org">University of York · Sept 2022 – Jun 2025</div>
+      <div class="edu-modules">
+        <b>First-class modules:</b> Introduction to Computing Systems (100%), Human-Computer Interaction (77%), Software &amp; Systems Engineering (70%), Network Security (70%), Ethical Hacking, Analysis &amp; Investigation (74%).<br>
+        Also covered operating systems &amp; networking, advanced computer systems, machine learning &amp; optimisation, and cryptography. Dissertation: "Attitudes towards AI in Higher Education."
+      </div>
+    </div>
+
+    <div class="edu-block">
+      <div class="edu-top">
+        <div class="edu-degree">A Levels</div>
+      </div>
+      <div class="edu-org">Brigshaw High School · Sept 2020 – Jun 2022</div>
+      <div class="edu-modules">Media (A*) · Geography (A) · Business (A) · Mathematics (B)</div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Projects</h2>
+      <div class="sub">Coursework I took further than the brief asked for.</div>
+    </div>
+
+    <div class="project">
+      <h3>Network security investigation and system design</h3>
+      <p>Investigated a simulated cyberattack in Wireshark, tracing malicious IPs and attack vectors and writing up a forensic report with a full timeline. Designed a secure attendance-tracking authentication system and proposed a hardened SMTP email setup with firewall rules.</p>
+    </div>
+
+    <div class="project">
+      <h3>Convolutional neural network on Oxford Flowers-102</h3>
+      <p>Built and trained a CNN to classify images from the Oxford Flowers-102 dataset, using normalisation, augmentation and regularisation to improve generalisation, then iterated on preprocessing and architecture based on model behaviour.</p>
+    </div>
+
+    <div class="project">
+      <h3>Banking data analysis for customer insight</h3>
+      <p>Mapped a banking client's business domain into an entity-relationship model, built the data pipeline, and applied classification, clustering and inferential statistics to turn customer trends into recommendations stakeholders could act on.</p>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap footer-grid">
+    <div>
+      <h2>Let's talk about your team.</h2>
+      <p>Open to roles in infrastructure, systems administration and networking — and happy to talk through anything on this page in more detail.</p>
+    </div>
+    <div class="footer-contact">
+      <a href="mailto:alexanderfirth@sky.com">alexanderfirth@sky.com</a>
+    </div>
+  </div>
+  <div class="wrap footer-note">Alexander Firth — updated September 2026.</div>
+</footer>
+
+</body>
+</html>
