@@ -415,6 +415,13 @@
 </footer>
 
 <script>
+  // Always open at the top of the page, ignoring the browser's
+  // memory of where you last scrolled to.
+  if('scrollRestoration' in history){
+    history.scrollRestoration = 'manual';
+  }
+  window.scrollTo(0, 0);
+
   // Smooth-scroll to sections without ever adding a #hash to the URL,
   // so refreshing the page always returns to the top of the site.
   document.querySelectorAll('a[href^="#"]').forEach(function(link){
